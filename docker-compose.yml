@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+  
+  # database service
+  db:
+    image: mongo:3.6
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data/mongodb:/data/db
+    command: --smallfiles
+  # web service for flask application
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: flask-scaffolding:assessment
+    env_file:
+      local.env
+    entrypoint: /bin/ash /code/docker-entrypoint.sh
+    volumes:
+      - ./src/:/code
+      - ./logs:/var/log/scaffolding
+    ports:
+      - "8400:5000"
+    depends_on:
+      - db
