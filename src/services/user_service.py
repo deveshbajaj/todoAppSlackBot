@@ -1,6 +1,5 @@
 import hashlib
 from models import user
-from models import userLogs
 import logging
 import json
 from datetime import datetime
@@ -39,7 +38,7 @@ class UserService():
         """ 
             task to Create a User in the mongoDb 
         """
-        data = user.User.objects(user_name=user_data['user_name'])
+        data = user.User.objects(phoneNo=user_data['phoneNo'])
         if len(data) > 0:
             return{
                 'res': "User already Exist"
@@ -51,6 +50,46 @@ class UserService():
                 first_name=user_data['first_name'],
                 last_name=user_data['last_name'],
                 user_name=user_data['user_name'],
-                password=password
+                password=password,
+                phoneNo=user_data['phoneNo']
             ).save()
             return new_user.to_json()
+
+    def search_user(self, searchData):
+        if 'phoneNumbers' in searchData:
+            data = user.User.objects(
+                phoneNo=searchData['phoneNumbers'])
+            if len(data) > 0:
+                users = []
+                for i_users in data:
+                    users.append(i_users.to_json())
+                return {'user': users}
+            else:
+                return {"res": "User_not_Found"}
+        elif 'name' in searchData:
+            data = user.User.objects(
+                user_name=searchData['name'])
+            if len(data) > 0:
+                users = []
+                for i_users in data:
+                    users.append(i_users.to_json())
+                return {'user': users}
+            else:
+                return {"res": "User_not_Found"}
+        else:
+            return "query String Not found"
+
+    def view_user(self, view_data):
+        try:
+            data = user.User.objects(
+                phoneNo=view_data['phoneNumbers'])
+            if len(data) > 0:
+                users = []
+                for i_users in data:
+                    users.append(i_users.to_json())
+                return {'user': users}
+            else:
+                return {"res": "User_not_Found"}
+        except Exception as identifier:
+            logging.exception(identifier)
+            return False

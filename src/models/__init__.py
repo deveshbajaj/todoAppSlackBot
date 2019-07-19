@@ -1,6 +1,6 @@
 from .user import User
-from .userLogs import UserLogs
+from .spam import Spam
 __all__ = [
     'User',
-    'UserLogs'
+    'Spam'
 ]
