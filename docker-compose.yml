@@ -15,7 +15,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: flask-scaffolding:assessment
+    image: dockable:assessment
     env_file:
       local.env
     entrypoint: /bin/ash /code/docker-entrypoint.sh

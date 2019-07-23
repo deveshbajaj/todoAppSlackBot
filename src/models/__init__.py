@@ -1,6 +1,4 @@
-from .user import User
-from .spam import Spam
+from .tasks import Tasks
 __all__ = [
-    'User',
-    'Spam'
+    'Tasks',
 ]

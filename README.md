@@ -1,4 +1,4 @@
-## Assignment Scaffolding
+## Assignment for Instahyre
 
 ***Code Navigation***
 
@@ -11,11 +11,9 @@ example:
 
     ("/", views.index, ["GET"], "index page")
 
-***Installation***
 
-Running the scaffolding app is very easy. First [install](https://docs.docker.com/install/) docker for your operating system from the docs provided in the docker website. Also [install](https://docs.docker.com/compose/install/) docker-compose
 
-Then run
+To run both the server run for Flask and MongoDb
 
     sudo docker-compose build
 and then
@@ -25,20 +23,21 @@ This will run the server at port http://localhost:8400/
 
 The index view will be displayed in your browser.
 
-***Logs***
 
-A `logs` folder is created in the root of the project i.e outside the `src` folder, which is mounted using the docker-compose volume mount. It will contain a file `flask-scaffolding.log` and will contain the project logs.
+***The Assignment and APIs***
 
-***Your Assignment***
 
-You have to achieve two major tasks:
+1.User Register \
+2.User Searching<p>
+	2.1 By Name 	 multiple responces auto and relevant maching \
+	2.2 By Phone No    only single responce \
+3.Spam adding \
+4.View User Profile  
+5.Login Of User Done Needs Cleaning 
 
-    Create a Login API (JSON) in flask in this structure.
-    Setup celery in this project and write a task that stores last login information in another collection of mongo
+Go through the structure of the project 
 
-Go through the structure of the project and figure out how you would proceed.
+logic is in api layer (i.e. views.py) and all the business logic is in the service layer (i.e. user_service.py).
+Schema goes in the models/*.py file.
 
-Make sure that all the api only logic should go in api layer (i.e. views.py) and all the business logic should go in the service layer (i.e. user_service.py).
-Schema goes in the models/user.py file.
-
-Refer docstrings in the above mentioned files.
+Refer docstrings in the above mentioned files and function 
