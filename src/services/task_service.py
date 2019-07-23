@@ -18,7 +18,8 @@ class TaskServices():
                 channel_id=my_data['channel_id'][0],
                 user_name=my_data['user_name'][0],
             ).save()
-            return new_task.task_details + 'is added in the Channel Todo List'
+            return '*'+new_task.task_details+'* is added in the \
+                Channel Todo List'
         except Exception as identifier:
             logging.exception(identifier)
             return str(identifier)
@@ -64,7 +65,7 @@ class TaskServices():
         s = ""
         print(allTask)
         for all in allTask:
-            s = s + "%s by *%s*" % all + '/n'
+            s = s + "%s by *%s*" % all + '\n'
         return s
 
     def checkNoArgument(self, data):
@@ -89,4 +90,4 @@ class TaskServices():
 
         except Exception as identifier:
             logging.exception(identifier)
-            raise Exception("error ocured")
+            raise Exception("error ocurred")
