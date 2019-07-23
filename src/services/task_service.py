@@ -13,14 +13,12 @@ class TaskServices():
     def add_task(self, my_data):
         try:
             print(my_data)
-            new_user = tasks.Tasks(
+            new_task = tasks.Tasks(
                 task_details=self.geTaskDetailsTodo(my_data),
                 channel_id=my_data['channel_id'][0],
                 user_name=my_data['user_name'][0],
             ).save()
-            return new_user.to_json()
-            return "ho"
-
+            return new_task.task_details + 'is added in the Channel Todo List'
         except Exception as identifier:
             logging.exception(identifier)
             return str(identifier)
@@ -33,14 +31,16 @@ class TaskServices():
         )
         if len(data) == 1:
             for i in data:
+                tmp = i.task_details
                 i.delete()
-            return "Item removed"
+            return "%s (Item is removed)" % tmp
         elif len(data) > 1:
             allTask = []
             for i in data:
                 allTask.append(i.task_details)
                 i.delete()
-            return(allTask)
+            tmp = ' , '.join(allTask)
+            return(tmp+" all this tasks are removed")
         else:
             return("No Task Found")
 
@@ -51,7 +51,7 @@ class TaskServices():
             )
             allTask = []
             for i in data:
-                allTask.append(i.task_details)
+                allTask.append((i.task_details, i.user_name))
         else:
             taskdetails = self.checkNoArgument(my_data)
             data = tasks.Tasks.objects(
@@ -60,8 +60,11 @@ class TaskServices():
             )
             allTask = []
             for i in data:
-                allTask.append(i.task_details)
-        return allTask
+                allTask.append((i.task_details, i.user_name))
+        s = ""
+        for all in allTask:
+            s = s + "%s by %s" % all + '/n'
+        return s
 
     def checkNoArgument(self, data):
         try:
