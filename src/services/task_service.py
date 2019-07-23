@@ -45,7 +45,7 @@ class TaskServices():
             return("No Task Found")
 
     def list_allTask(self, my_data):
-        if len(my_data['text']) == 0:
+        if 'text' not in my_data:
             data = tasks.Tasks.objects(
                 channel_id=my_data['channel_id'][0]
             )
