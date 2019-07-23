@@ -1,4 +1,4 @@
-## Assignment for Instahyre
+## Slack todo App for mark and list Work
 
 ***Code Navigation***
 
@@ -24,16 +24,11 @@ This will run the server at port http://localhost:8400/
 The index view will be displayed in your browser.
 
 
-***The Assignment and APIs***
+***functionality***
 
-
-1.User Register \
-2.User Searching<p>
-	2.1 By Name 	 multiple responces auto and relevant maching \
-	2.2 By Phone No    only single responce \
-3.Spam adding \
-4.View User Profile  
-5.Login Of User Done Needs Cleaning 
+* /addtodo taskName (add task in the channel list)
+* /markdown taskName (mark the task complete and remove the task form database)
+* /listtodo [prefix(optional)] (list down all the task of channel or if prefix is given list task for that prefix )
 
 Go through the structure of the project 
 
@@ -41,3 +36,11 @@ logic is in api layer (i.e. views.py) and all the business logic is in the servi
 Schema goes in the models/*.py file.
 
 Refer docstrings in the above mentioned files and function 
+
+***Improvement or Suggestion***
+
+As of now I am using Flask and mongodb as server and database respectively , this require a compute unit for all the time 
+
+* Instead of compute unit we can user Lambda or serverless as a api endpoint this will reduce the cost and complexity
+* Any Simple dataStore to hold value like dynamoDb or s3 
+
