@@ -62,6 +62,7 @@ class TaskServices():
             for i in data:
                 allTask.append((i.task_details, i.user_name))
         s = ""
+        print(allTask)
         for all in allTask:
             s = s + "%s by *%s*" % all + '/n'
         return s
