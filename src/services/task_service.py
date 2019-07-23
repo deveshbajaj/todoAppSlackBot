@@ -63,7 +63,7 @@ class TaskServices():
                 allTask.append((i.task_details, i.user_name))
         s = ""
         for all in allTask:
-            s = s + "%s by %s" % all + '/n'
+            s = s + "%s by *%s*" % all + '/n'
         return s
 
     def checkNoArgument(self, data):

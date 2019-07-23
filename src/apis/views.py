@@ -18,7 +18,7 @@ def addTodo():
         print(user_data, type(user_data))
         all_task_service = task_service.TaskServices()
         res = all_task_service.add_task(user_data)
-        return json.dumps(res)
+        return res
 
     except Exception as identifier:
         logging.exception(identifier)
@@ -35,7 +35,7 @@ def removeTodo():
         print(user_data, type(user_data))
         all_task_service = task_service.TaskServices()
         res = all_task_service.remove_task(user_data)
-        return json.dumps(res)
+        return res  # json.dumps(res)
     except Exception as identifier:
         logging.exception(identifier)
         return "500 Internal Server Error"
@@ -51,7 +51,7 @@ def listAll():
         print(user_data, type(user_data))
         all_task_service = task_service.TaskServices()
         res = all_task_service.list_allTask(user_data)
-        return json.dumps(res)
+        return res  # json.dumps(res)
     except Exception as identifier:
         logging.exception(identifier)
         return "500 Internal Server Error"
